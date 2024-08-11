@@ -94,8 +94,12 @@ Bible Hub
 Pittsburgh, PA 15045 USA
 www.biblehub.com
 
+for the translation and the hard work
+
 and also thank you
 
 Riversoft
 www.mysword.info
 
+for providing all the [bible downloads](http://www.mysword.info/download-mysword/bibles)
+formatted as sqlite3.
