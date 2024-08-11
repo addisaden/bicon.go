@@ -12,9 +12,5 @@ func GetBookName(bookIndex int) (string, error) {
 	if bookIndex > len(books) || bookIndex < 1 {
 		return "", fmt.Errorf("could not found a book with index %v", bookIndex)
 	}
-	result := books[bookIndex]
-	if result != "" {
-		return books[bookIndex], nil
-	}
-	return "", fmt.Errorf("could not found a book with index %v", bookIndex)
+	return books[bookIndex], nil
 }

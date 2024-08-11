@@ -22,4 +22,10 @@ func TestGetBookName(t *testing.T) {
 	if wantBookNameC != bookNameC || err != nil {
 		t.Fatalf(`GetBookName(%v) = %v, %v, want match for %v, nil`, bookIndexC, bookNameC, err, wantBookNameC)
 	}
+
+	bookIndexD := 0
+	bookNameD, err := GetBookName(bookIndexD)
+	if err == nil {
+		t.Fatalf(`GetDookName(%v) = %v, %v, want an error`, bookIndexD, bookNameD, err)
+	}
 }
