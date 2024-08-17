@@ -1,0 +1,9 @@
+Hebrew Grammar
+
+https://hb.openscriptures.org/parsing/HebrewMorphologyCodes.html
+https://github.com/openscriptures/morphhb
+
+Greek Grammar
+
+https://www.unfoldingword.org/for-translators/content#UGG
+https://ugg.readthedocs.io/en/latest/front.html
