@@ -7,11 +7,11 @@ func TestVerseType(t *testing.T) {
 
 	// testVerse := VerseType{1, 1, 1, genesis11}
 
-	testVerseList := []VerseType{
-		{1, 1, 1, genesis11},
+	testVerseList := map[string]VerseType{
+		"1_1_1": {1, 1, 1, genesis11},
 	}
 
-	testVerse := testVerseList[0]
+	testVerse := testVerseList["1_1_1"]
 
 	if testVerse.book != 1 {
 		t.Errorf("testVerse.book: %v is not 1: %v", testVerse.book, testVerse)
