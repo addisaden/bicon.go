@@ -15,7 +15,7 @@ with open("bereaninterlinear.go", "w") as output_file:
                 continue
             line = line[25:-2]
             data = line.split(",", 3)
-            data[3] = data[3][1:-1]
+            data[3] = data[3][1:-2]
             data[3] = codecs.encode(data[3], 'unicode-escape').decode().replace("\\x", "\\u00")
             format_string = "        \"{book}_{chapter}_{verse}\": {o}{book},{chapter},{verse},\"{text}\"{c},\n"
             output_line = format_string.format(book=data[0], chapter=data[1], verse=data[2], text=data[3], o='{', c='}')

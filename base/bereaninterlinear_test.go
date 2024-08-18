@@ -5,7 +5,7 @@ import "testing"
 func TestBereanInterlinear(t *testing.T) {
 	bereanInterlinear := GetBereanInterlinear()
 
-	firstVerse, firstVerseFound := bereanInterlinear["1_1_1"]
+	_, firstVerseFound := bereanInterlinear["1_1_1"]
 	if !firstVerseFound {
 		t.Error("Error: First verse is empty")
 	}
@@ -15,6 +15,5 @@ func TestBereanInterlinear(t *testing.T) {
 		t.Error("Error: Last verse is empty")
 	}
 
-	t.Errorf("%v", firstVerse)
-
+	// t.Errorf("%v", firstVerse)
 }
