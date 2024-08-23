@@ -106,4 +106,12 @@ func TestVerseTextType(t *testing.T) {
 			t.Errorf("English %v is not 'Paul'", gfirst.English)
 		}
 	}
+
+	genesis_book := GetBereanInterlinear1()
+	genesis_book_analyzed := AnalyzeAll(genesis_book)
+	for _, value := range genesis_book_analyzed {
+		if value.Words[0].Language != "hebrew" {
+			t.Errorf("Words must be hebrew language in %v", value)
+		}
+	}
 }
