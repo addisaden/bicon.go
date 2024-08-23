@@ -4,22 +4,22 @@ package base
 // Analyze(VerseType) => VerseTextType
 
 type VerseTextType struct {
-	book      uint8
-	chapter   uint16
-	verse     uint16
-	text      string
-	title     string
-	reference []string
-	rtl       bool
-	words     []VerseWordType
+	Book      uint8
+	Chapter   uint16
+	Verse     uint16
+	Text      string
+	Title     string
+	Reference []string
+	Rtl       bool
+	Words     []VerseWordType
 }
 
 type VerseWordType struct {
-	raw           string
-	language      string
-	text          string
-	english       string
-	strongnumber  string
-	grammar       string
-	pronunciation string
+	Raw           string
+	Language      string
+	Text          string
+	English       string
+	Strongnumber  string
+	Grammar       string
+	Pronunciation string
 }

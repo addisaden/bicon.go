@@ -24,32 +24,32 @@ func TestGetBooks(t *testing.T) {
 	collected_books := GetBooks(1, 7, 66)
 
 	for key, value := range these_books {
-		if collected_books[key].book != value.book {
-			t.Errorf("In %v the book should be %v", collected_books[key], value.book)
+		if collected_books[key].Book != value.Book {
+			t.Errorf("In %v the book should be %v", collected_books[key], value.Book)
 		}
-		if collected_books[key].chapter != value.chapter {
-			t.Errorf("In %v the chapter should be %v", collected_books[key], value.chapter)
+		if collected_books[key].Chapter != value.Chapter {
+			t.Errorf("In %v the chapter should be %v", collected_books[key], value.Chapter)
 		}
-		if collected_books[key].verse != value.verse {
-			t.Errorf("In %v the verse should be %v", collected_books[key], value.verse)
+		if collected_books[key].Verse != value.Verse {
+			t.Errorf("In %v the verse should be %v", collected_books[key], value.Verse)
 		}
-		if collected_books[key].text != value.text {
-			t.Errorf("In %v the text should be %v", collected_books[key], value.text)
+		if collected_books[key].Text != value.Text {
+			t.Errorf("In %v the text should be %v", collected_books[key], value.Text)
 		}
 	}
 
 	for key, value := range collected_books {
-		if these_books[key].book != value.book {
-			t.Errorf("In %v the book should be %v", these_books[key], value.book)
+		if these_books[key].Book != value.Book {
+			t.Errorf("In %v the book should be %v", these_books[key], value.Book)
 		}
-		if these_books[key].chapter != value.chapter {
-			t.Errorf("In %v the chapter should be %v", these_books[key], value.chapter)
+		if these_books[key].Chapter != value.Chapter {
+			t.Errorf("In %v the chapter should be %v", these_books[key], value.Chapter)
 		}
-		if these_books[key].verse != value.verse {
-			t.Errorf("In %v the verse should be %v", these_books[key], value.verse)
+		if these_books[key].Verse != value.Verse {
+			t.Errorf("In %v the verse should be %v", these_books[key], value.Verse)
 		}
-		if these_books[key].text != value.text {
-			t.Errorf("In %v the text should be %v", these_books[key], value.text)
+		if these_books[key].Text != value.Text {
+			t.Errorf("In %v the text should be %v", these_books[key], value.Text)
 		}
 	}
 }

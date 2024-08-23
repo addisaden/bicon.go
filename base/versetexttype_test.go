@@ -13,97 +13,97 @@ func TestVerseTextType(t *testing.T) {
 	g11 := Analyze(g11VerseType)
 	nt5011 := Analyze(ntVerseType)
 
-	if g11.book != 1 {
-		t.Errorf("book %v must be 1", g11.book)
+	if g11.Book != 1 {
+		t.Errorf("book %v must be 1", g11.Book)
 	}
 
-	if g11.chapter != 1 {
-		t.Errorf("book %v must be 1", g11.chapter)
+	if g11.Chapter != 1 {
+		t.Errorf("book %v must be 1", g11.Chapter)
 	}
 
-	if g11.verse != 1 {
-		t.Errorf("book %v must be 1", g11.verse)
+	if g11.Verse != 1 {
+		t.Errorf("book %v must be 1", g11.Verse)
 	}
 
-	if g11.text != genesis11 {
-		t.Errorf("text\n%v\nmust be\n%v", g11.text, genesis11)
+	if g11.Text != genesis11 {
+		t.Errorf("text\n%v\nmust be\n%v", g11.Text, genesis11)
 	}
 
-	if g11.title != "The Creation" {
-		t.Errorf("title %v must be 'The Creation'", g11.title)
+	if g11.Title != "The Creation" {
+		t.Errorf("title %v must be 'The Creation'", g11.Title)
 	}
 
-	if nt5011.title != "Greetings from Paul and Timothy" {
-		t.Errorf("title %v must be 'Greetings from Paul and Timothy'", nt5011.title)
+	if nt5011.Title != "Greetings from Paul and Timothy" {
+		t.Errorf("title %v must be 'Greetings from Paul and Timothy'", nt5011.Title)
 	}
 
-	if len(g11.reference) != 2 {
-		t.Errorf("there must be 2 references in %v", g11.reference)
+	if len(g11.Reference) != 2 {
+		t.Errorf("there must be 2 references in %v", g11.Reference)
 	} else {
-		if g11.reference[0] != "43.1.1-5" {
-			t.Errorf("First reference %v must be '43.1.1-5'", g11.reference[0])
+		if g11.Reference[0] != "43.1.1-5" {
+			t.Errorf("First reference %v must be '43.1.1-5'", g11.Reference[0])
 		}
 	}
 
-	if g11.rtl != true {
-		t.Errorf("RTL should be true not %v", g11.rtl)
+	if g11.Rtl != true {
+		t.Errorf("RTL should be true not %v", g11.Rtl)
 	}
 
-	if nt5011.rtl != false {
-		t.Errorf("RTL should be false not %v", nt5011.rtl)
+	if nt5011.Rtl != false {
+		t.Errorf("RTL should be false not %v", nt5011.Rtl)
 	}
 
-	if len(g11.words) != 7 {
-		t.Errorf("It should be 7 words in %v", g11.words)
+	if len(g11.Words) != 7 {
+		t.Errorf("It should be 7 words in %v", g11.Words)
 	} else {
-		hfirst := g11.words[0]
-		if hfirst.raw != "<Q><H>בְּרֵאשִׁ֖ית<WH7225><WTPrep-b│N-fs><h><X>bə·rê·šîṯ<x><E> In the beginning <e><q>" {
-			t.Errorf("Raw is not present in %v", hfirst.raw)
+		hfirst := g11.Words[0]
+		if hfirst.Raw != "<Q><H>בְּרֵאשִׁ֖ית<WH7225><WTPrep-b│N-fs><h><X>bə·rê·šîṯ<x><E> In the beginning <e><q>" {
+			t.Errorf("Raw is not present in %v", hfirst.Raw)
 		}
-		if hfirst.text != "בְּרֵאשִׁ֖ית" {
-			t.Errorf("Text %v is not present in %v", "בְּרֵאשִׁ֖ית", hfirst.text)
+		if hfirst.Text != "בְּרֵאשִׁ֖ית" {
+			t.Errorf("Text %v is not present in %v", "בְּרֵאשִׁ֖ית", hfirst.Text)
 		}
-		if hfirst.language != "hebrew" {
-			t.Errorf("Language %v is not hebrew", hfirst.language)
+		if hfirst.Language != "hebrew" {
+			t.Errorf("Language %v is not hebrew", hfirst.Language)
 		}
-		if hfirst.strongnumber != "H7225" {
-			t.Errorf("Strongnumber %v is not H7225", hfirst.strongnumber)
+		if hfirst.Strongnumber != "H7225" {
+			t.Errorf("Strongnumber %v is not H7225", hfirst.Strongnumber)
 		}
-		if hfirst.grammar != "Prep-b│N-fs" {
-			t.Errorf("Grammar %v is not Prep-b│N-fs", hfirst.grammar)
+		if hfirst.Grammar != "Prep-b│N-fs" {
+			t.Errorf("Grammar %v is not Prep-b│N-fs", hfirst.Grammar)
 		}
-		if hfirst.pronunciation != "bə·rê·šîṯ" {
-			t.Errorf("Pronunctiation %v is not bə·rê·šîṯ", hfirst.pronunciation)
+		if hfirst.Pronunciation != "bə·rê·šîṯ" {
+			t.Errorf("Pronunctiation %v is not bə·rê·šîṯ", hfirst.Pronunciation)
 		}
-		if hfirst.english != "In the beginning" {
-			t.Errorf("English %v is not 'In the beginning'", hfirst.english)
+		if hfirst.English != "In the beginning" {
+			t.Errorf("English %v is not 'In the beginning'", hfirst.English)
 		}
 	}
 
-	if len(nt5011.words) != 20 {
-		t.Errorf("It should be 20 words in %v", nt5011.words)
+	if len(nt5011.Words) != 20 {
+		t.Errorf("It should be 20 words in %v", nt5011.Words)
 	} else {
-		gfirst := nt5011.words[0]
-		if gfirst.raw != "<Q><G>Παῦλος<WG3972><WTN-NMS><g><X>Paulos<x><E> Paul <e><q>" {
-			t.Errorf("Raw is not present in %v", gfirst.raw)
+		gfirst := nt5011.Words[0]
+		if gfirst.Raw != "<Q><G>Παῦλος<WG3972><WTN-NMS><g><X>Paulos<x><E> Paul <e><q>" {
+			t.Errorf("Raw is not present in %v", gfirst.Raw)
 		}
-		if gfirst.text != "Παῦλος" {
-			t.Errorf("Text %v is not present %v", "Παῦλος", gfirst.text)
+		if gfirst.Text != "Παῦλος" {
+			t.Errorf("Text %v is not present %v", "Παῦλος", gfirst.Text)
 		}
-		if gfirst.language != "greek" {
-			t.Errorf("Language %v is not greek", gfirst.language)
+		if gfirst.Language != "greek" {
+			t.Errorf("Language %v is not greek", gfirst.Language)
 		}
-		if gfirst.strongnumber != "G3972" {
-			t.Errorf("Strongnumber %v is not G3972", gfirst.strongnumber)
+		if gfirst.Strongnumber != "G3972" {
+			t.Errorf("Strongnumber %v is not G3972", gfirst.Strongnumber)
 		}
-		if gfirst.grammar != "N-NMS" {
-			t.Errorf("Grammar %v is not N-NMS", gfirst.grammar)
+		if gfirst.Grammar != "N-NMS" {
+			t.Errorf("Grammar %v is not N-NMS", gfirst.Grammar)
 		}
-		if gfirst.pronunciation != "Paulos" {
-			t.Errorf("Pronunctiation %v is not Paulos", gfirst.pronunciation)
+		if gfirst.Pronunciation != "Paulos" {
+			t.Errorf("Pronunctiation %v is not Paulos", gfirst.Pronunciation)
 		}
-		if gfirst.english != "Paul" {
-			t.Errorf("English %v is not 'Paul'", gfirst.english)
+		if gfirst.English != "Paul" {
+			t.Errorf("English %v is not 'Paul'", gfirst.English)
 		}
 	}
 }

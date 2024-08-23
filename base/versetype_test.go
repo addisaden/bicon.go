@@ -13,16 +13,16 @@ func TestVerseType(t *testing.T) {
 
 	testVerse := testVerseList["1_1_1"]
 
-	if testVerse.book != 1 {
-		t.Errorf("testVerse.book: %v is not 1: %v", testVerse.book, testVerse)
+	if testVerse.Book != 1 {
+		t.Errorf("testVerse.Book: %v is not 1: %v", testVerse.Book, testVerse)
 	}
-	if testVerse.chapter != 1 {
-		t.Errorf("testVerse.chapter: %v is not 1: %v", testVerse.chapter, testVerse)
+	if testVerse.Chapter != 1 {
+		t.Errorf("testVerse.Chapter: %v is not 1: %v", testVerse.Chapter, testVerse)
 	}
-	if testVerse.verse != 1 {
-		t.Errorf("testVerse.verse: %v is not 1: %v", testVerse.verse, testVerse)
+	if testVerse.Verse != 1 {
+		t.Errorf("testVerse.verse: %v is not 1: %v", testVerse.Verse, testVerse)
 	}
-	if testVerse.text != genesis11 {
-		t.Errorf("testVerse.verse: %v is not %v: %v", testVerse.text, genesis11, testVerse)
+	if testVerse.Text != genesis11 {
+		t.Errorf("testVerse.verse: %v is not %v: %v", testVerse.Text, genesis11, testVerse)
 	}
 }
