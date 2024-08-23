@@ -15,10 +15,11 @@ type VerseTextType struct {
 }
 
 type VerseWordType struct {
+	raw           string
 	language      string
 	text          string
 	english       string
-	strongnumber  uint16
+	strongnumber  string
 	grammar       string
 	pronunciation string
 }

@@ -52,4 +52,58 @@ func TestVerseTextType(t *testing.T) {
 	if nt5011.rtl != false {
 		t.Errorf("RTL should be false not %v", nt5011.rtl)
 	}
+
+	if len(g11.words) != 7 {
+		t.Errorf("It should be 7 words in %v", g11.words)
+	} else {
+		hfirst := g11.words[0]
+		if hfirst.raw != "<Q><H>בְּרֵאשִׁ֖ית<WH7225><WTPrep-b│N-fs><h><X>bə·rê·šîṯ<x><E> In the beginning <e><q>" {
+			t.Errorf("Raw is not present in %v", hfirst.raw)
+		}
+		if hfirst.text != "בְּרֵאשִׁ֖ית" {
+			t.Errorf("Text %v is not present in %v", "בְּרֵאשִׁ֖ית", hfirst.text)
+		}
+		if hfirst.language != "hebrew" {
+			t.Errorf("Language %v is not hebrew", hfirst.language)
+		}
+		if hfirst.strongnumber != "H7225" {
+			t.Errorf("Strongnumber %v is not H7225", hfirst.strongnumber)
+		}
+		if hfirst.grammar != "Prep-b│N-fs" {
+			t.Errorf("Grammar %v is not Prep-b│N-fs", hfirst.grammar)
+		}
+		if hfirst.pronunciation != "bə·rê·šîṯ" {
+			t.Errorf("Pronunctiation %v is not bə·rê·šîṯ", hfirst.pronunciation)
+		}
+		if hfirst.english != "In the beginning" {
+			t.Errorf("English %v is not 'In the beginning'", hfirst.english)
+		}
+	}
+
+	if len(nt5011.words) != 20 {
+		t.Errorf("It should be 20 words in %v", nt5011.words)
+	} else {
+		gfirst := nt5011.words[0]
+		if gfirst.raw != "<Q><G>Παῦλος<WG3972><WTN-NMS><g><X>Paulos<x><E> Paul <e><q>" {
+			t.Errorf("Raw is not present in %v", gfirst.raw)
+		}
+		if gfirst.text != "Παῦλος" {
+			t.Errorf("Text %v is not present %v", "Παῦλος", gfirst.text)
+		}
+		if gfirst.language != "greek" {
+			t.Errorf("Language %v is not greek", gfirst.language)
+		}
+		if gfirst.strongnumber != "G3972" {
+			t.Errorf("Strongnumber %v is not G3972", gfirst.strongnumber)
+		}
+		if gfirst.grammar != "N-NMS" {
+			t.Errorf("Grammar %v is not N-NMS", gfirst.grammar)
+		}
+		if gfirst.pronunciation != "Paulos" {
+			t.Errorf("Pronunctiation %v is not Paulos", gfirst.pronunciation)
+		}
+		if gfirst.english != "Paul" {
+			t.Errorf("English %v is not 'Paul'", gfirst.english)
+		}
+	}
 }
