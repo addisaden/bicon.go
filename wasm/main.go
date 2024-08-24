@@ -4,6 +4,7 @@ package main
 // cp "$(go env GOROOT)/misc/wasm/wasm_exec.js" .
 
 import (
+	"encoding/json"
 	"fmt"
 	"syscall/js"
 
@@ -32,27 +33,20 @@ func jsGetBookIndex(this js.Value, args []js.Value) any {
 
 func jsGetTexts(this js.Value, args []js.Value) any {
 	if len(args) >= 4 {
-		fmt.Println(1)
 		book := uint8(args[0].Int())
 		chapter := args[1].Int()
 		from_verse := args[2].Int()
 		to_verse := args[3].Int()
-		fmt.Println(2)
 
 		book_data := base.GetBooks(book)
 		result := map[string]base.VerseTextType{}
-		fmt.Println(3)
 		for i := from_verse; i <= to_verse; i++ {
-			fmt.Println(4)
 			this_index := fmt.Sprintf("%d_%d_%d", book, chapter, i)
-			fmt.Println(5)
 			result[this_index] = base.Analyze(book_data[this_index])
-			fmt.Println(6)
 		}
-		fmt.Println(7)
-		fmt.Printf("%v\n", result)
-		fmt.Println(8)
-		return result
+		jsonBytes, _ := json.Marshal(result)
+		jsValue := js.Global().Get("JSON").Call("parse", string(jsonBytes))
+		return jsValue
 	}
 	return nil
 }
