@@ -1,0 +1,3 @@
+[submodule "biconpwa"]
+	path = biconpwa
+	url = git@github.com:addisaden/biconpwa.git
