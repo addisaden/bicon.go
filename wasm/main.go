@@ -9,6 +9,7 @@ import (
 	"syscall/js"
 
 	"github.com/addisaden/bicon.go/base"
+	"github.com/addisaden/bicon.go/search"
 )
 
 func jsGetBookName(this js.Value, args []js.Value) any {
@@ -51,6 +52,21 @@ func jsGetTexts(this js.Value, args []js.Value) any {
 	return nil
 }
 
+func jsSearchGlobal(this js.Value, args []js.Value) any {
+	if len(args) >= 3 {
+		query := args[0].String()
+		limit := args[1].Int()
+		offset := args[2].Int()
+
+		result := search.SearchGlobal(query, limit, offset)
+
+		jsonBytes, _ := json.Marshal(result)
+		jsValue := js.Global().Get("JSON").Call("parse", string(jsonBytes))
+		return jsValue
+	}
+	return nil
+}
+
 func main() {
 	first_book, err := base.GetBookName(1)
 	result := "Hi"
@@ -68,5 +84,6 @@ func main() {
 	js.Global().Set("getBookName", js.FuncOf(jsGetBookName))
 	js.Global().Set("getBookIndex", js.FuncOf(jsGetBookIndex))
 	js.Global().Set("getTexts", js.FuncOf(jsGetTexts))
+	js.Global().Set("searchGlobal", js.FuncOf(jsSearchGlobal))
 	<-make(chan bool)
 }

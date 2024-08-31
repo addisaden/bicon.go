@@ -63,7 +63,6 @@ func SearchGlobal(query string, limit int, offset int) ResultType {
 			}
 			if all_query_matched <= 0 {
 				results.Results = append(results.Results, verseAnalyzed)
-				break
 			}
 		}
 		if len(results.Results) >= results.Limit {
