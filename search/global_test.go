@@ -44,3 +44,11 @@ func TestGlobalMultiTerm(t *testing.T) {
 		}
 	}
 }
+
+func TestGlobalNoResultsPerformance(t *testing.T) {
+	searchTerm := "asfjoangewgsngndfionqwoinwfgioanfioanfoiwqngiowq"
+	searchResults := SearchGlobal(searchTerm, 1, 0)
+	if len(searchResults.Results) > 0 {
+		t.Errorf("len(Results) is %v must be 0", len(searchResults.Results))
+	}
+}

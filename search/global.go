@@ -25,6 +25,45 @@ func values(input map[string]base.VerseType) []base.VerseType {
 	return results
 }
 
+func versePresearch(verse base.VerseType, queries []string) bool {
+	all_queries_matched := len(queries)
+	for _, q := range queries {
+		if strings.Contains(strings.ToLower(verse.Text), strings.ToLower(q)) {
+			all_queries_matched -= 1
+		}
+	}
+	return all_queries_matched <= 0
+}
+
+func verseSearchComplete(verseAnalyzed base.VerseTextType, queries []string) bool {
+	all_queries_matched := len(queries)
+	for _, q := range queries {
+		matched := false
+		for _, word := range verseAnalyzed.Words {
+			if strings.Contains(strings.ToLower(word.Text), strings.ToLower(q)) {
+				matched = true
+				break
+			}
+			if strings.Contains(strings.ToLower(word.English), strings.ToLower(q)) {
+				matched = true
+				break
+			}
+			if strings.EqualFold(word.Grammar, q) {
+				matched = true
+				break
+			}
+			if strings.EqualFold(word.Strongnumber, q) {
+				matched = true
+				break
+			}
+		}
+		if matched {
+			all_queries_matched -= 1
+		}
+	}
+	return all_queries_matched <= 0
+}
+
 func SearchGlobal(query string, limit int, offset int) ResultType {
 	results := ResultType{query, limit, offset, []base.VerseTextType{}}
 	query_split := strings.Fields(query)
@@ -35,34 +74,11 @@ func SearchGlobal(query string, limit int, offset int) ResultType {
 			if len(results.Results) >= results.Limit {
 				break
 			}
-			verseAnalyzed := base.Analyze(verse)
-			all_query_matched := len(query_split)
-			for _, q := range query_split {
-				matched := false
-				for _, word := range verseAnalyzed.Words {
-					if strings.Contains(strings.ToLower(word.Text), strings.ToLower(q)) {
-						matched = true
-						break
-					}
-					if strings.Contains(strings.ToLower(word.English), strings.ToLower(q)) {
-						matched = true
-						break
-					}
-					if strings.EqualFold(word.Grammar, q) {
-						matched = true
-						break
-					}
-					if strings.EqualFold(word.Strongnumber, q) {
-						matched = true
-						break
-					}
+			if versePresearch(verse, query_split) {
+				verseAnalyzed := base.Analyze(verse)
+				if verseSearchComplete(verseAnalyzed, query_split) {
+					results.Results = append(results.Results, verseAnalyzed)
 				}
-				if matched {
-					all_query_matched -= 1
-				}
-			}
-			if all_query_matched <= 0 {
-				results.Results = append(results.Results, verseAnalyzed)
 			}
 		}
 		if len(results.Results) >= results.Limit {
