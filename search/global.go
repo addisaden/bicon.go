@@ -35,25 +35,30 @@ func versePresearch(verse base.VerseType, queries []string) bool {
 	return all_queries_matched <= 0
 }
 
-func verseSearchComplete(verseAnalyzed base.VerseTextType, queries []string) bool {
+func verseSearchComplete(verseAnalyzed base.VerseTextType, queries []string) (bool, []int) {
 	all_queries_matched := len(queries)
+	matched_list := []int{}
 	for _, q := range queries {
 		matched := false
-		for _, word := range verseAnalyzed.Words {
+		for matched_index, word := range verseAnalyzed.Words {
 			if strings.Contains(strings.ToLower(word.Text), strings.ToLower(q)) {
 				matched = true
+				matched_list = append(matched_list, matched_index)
 				break
 			}
 			if strings.Contains(strings.ToLower(word.English), strings.ToLower(q)) {
 				matched = true
+				matched_list = append(matched_list, matched_index)
 				break
 			}
 			if strings.EqualFold(word.Grammar, q) {
 				matched = true
+				matched_list = append(matched_list, matched_index)
 				break
 			}
 			if strings.EqualFold(word.Strongnumber, q) {
 				matched = true
+				matched_list = append(matched_list, matched_index)
 				break
 			}
 		}
@@ -61,11 +66,11 @@ func verseSearchComplete(verseAnalyzed base.VerseTextType, queries []string) boo
 			all_queries_matched -= 1
 		}
 	}
-	return all_queries_matched <= 0
+	return (all_queries_matched <= 1), matched_list
 }
 
 func SearchGlobal(query string, limit int, offset int) ResultType {
-	results := ResultType{query, limit, offset, []base.VerseTextType{}}
+	results := ResultType{query, limit, offset, []ResultVerseType{}}
 	query_split := strings.Fields(query)
 	for i := range 66 {
 		bookId := uint8(i + 1)
@@ -76,8 +81,8 @@ func SearchGlobal(query string, limit int, offset int) ResultType {
 			}
 			if versePresearch(verse, query_split) {
 				verseAnalyzed := base.Analyze(verse)
-				if verseSearchComplete(verseAnalyzed, query_split) {
-					results.Results = append(results.Results, verseAnalyzed)
+				if search_matched, search_list := verseSearchComplete(verseAnalyzed, query_split); search_matched {
+					results.Results = append(results.Results, ResultVerseType{verseAnalyzed, search_list})
 				}
 			}
 		}

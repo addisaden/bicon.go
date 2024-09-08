@@ -24,7 +24,7 @@ func TestGlobalSimple(t *testing.T) {
 	if len(searchResults.Results) != 1 {
 		t.Errorf("len(Results) %v must be %v", len(searchResults.Results), 1)
 	}
-	firstResult := searchResults.Results[0]
+	firstResult := searchResults.Results[0].Verse
 	verseIndex := fmt.Sprintf("%d_%d_%d", firstResult.Book, firstResult.Chapter, firstResult.Verse)
 	if verseIndex != verseIndex1 {
 		t.Errorf("First match %v must be %v", verseIndex, verseIndex1)
@@ -37,10 +37,17 @@ func TestGlobalMultiTerm(t *testing.T) {
 	if len(searchResults.Results) < 1 {
 		t.Errorf("len(Results) is %v must be 1", len(searchResults.Results))
 	} else {
-		firstResult := searchResults.Results[0]
+		firstResultObject := searchResults.Results[0]
+		firstResult := firstResultObject.Verse
 		verseIndex := fmt.Sprintf("%d_%d_%d", firstResult.Book, firstResult.Chapter, firstResult.Verse)
 		if verseIndex != "1_1_1" {
 			t.Errorf("First match %v must be %v", verseIndex, "1_1_1")
+		}
+		if firstResultObject.Match[0] != 1 {
+			t.Errorf("First wordmatch %v must be 1", firstResultObject.Match[0])
+		}
+		if firstResultObject.Match[1] != 0 {
+			t.Errorf("First wordmatch %v must be 0", firstResultObject.Match[1])
 		}
 	}
 }

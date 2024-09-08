@@ -6,5 +6,10 @@ type ResultType struct {
 	Query   string
 	Limit   int
 	Offset  int
-	Results []base.VerseTextType
+	Results []ResultVerseType
+}
+
+type ResultVerseType struct {
+	Verse base.VerseTextType
+	Match []int
 }
