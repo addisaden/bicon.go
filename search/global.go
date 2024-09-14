@@ -70,7 +70,7 @@ func verseSearchComplete(verseAnalyzed base.VerseTextType, queries []string) (bo
 }
 
 func SearchGlobal(query string, limit int, offset int) ResultType {
-	results := ResultType{query, limit, offset, []ResultVerseType{}}
+	results := ResultType{query, limit, offset, base.VerseTextType{}, []string{}, []ResultVerseType{}}
 	query_split := strings.Fields(query)
 	for i := range 66 {
 		bookId := uint8(i + 1)

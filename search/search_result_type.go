@@ -3,10 +3,12 @@ package search
 import "github.com/addisaden/bicon.go/base"
 
 type ResultType struct {
-	Query   string
-	Limit   int
-	Offset  int
-	Results []ResultVerseType
+	Query    string
+	Limit    int
+	Offset   int
+	Context  base.VerseTextType
+	Selected []string
+	Results  []ResultVerseType
 }
 
 type ResultVerseType struct {
