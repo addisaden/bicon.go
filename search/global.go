@@ -35,6 +35,25 @@ func versePresearch(verse base.VerseType, queries []string) bool {
 	return all_queries_matched <= 0
 }
 
+func verseSearchStrongnumber(verseAnalyzed base.VerseTextType, queries []string) (bool, []int) {
+	all_queries_matched := len(queries)
+	matched_list := []int{}
+	for _, q := range queries {
+		matched := false
+		for matched_index, word := range verseAnalyzed.Words {
+			if strings.EqualFold(word.Strongnumber, q) {
+				matched = true
+				matched_list = append(matched_list, matched_index)
+				break
+			}
+		}
+		if matched {
+			all_queries_matched -= 1
+		}
+	}
+	return (all_queries_matched <= 1), matched_list
+}
+
 func verseSearchComplete(verseAnalyzed base.VerseTextType, queries []string) (bool, []int) {
 	all_queries_matched := len(queries)
 	matched_list := []int{}
